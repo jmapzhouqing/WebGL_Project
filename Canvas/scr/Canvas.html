@@ -5,9 +5,9 @@
     <title>Title</title>
     <style>
         #Canvas_Output{
-            width: 300px;
-            height:150px;
-            border:1px solid #d3d3d3
+            width: 400px;
+            height:200px;
+            border:1px solid #FF0000
         }
     </style>
 </head>
@@ -19,10 +19,21 @@
     var img = new Image();
     var draw;
     img.onload = function () {
-        draw = ctx.drawImage(img,90,130,90,80,20,20,90,80);
+        //draw = ctx.drawImage(img,90,130,90,80,20,20,90,80);
+        /*
+        ctx.fillRect(0,0,100,100);
+        ctx.strokeRect(100,100,100,100);
+        ctx.clearRect(50,50,50,50);*/
+        ctx.fillStyle = "#FFFFFF";
+
+        //ctx.beginPath();
+        ctx.rect(10,10,40,40);
+        //ctx.lineTo(150,120);
+        //ctx.closePath();
+        ctx.fill();
     }
     img.src = "share.jpg";
-    c.onmousemove = function (param) {
+    c.onmousemove = function (param){
 
     }
 </script>

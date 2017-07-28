@@ -1,0 +1,13 @@
+# Blender MTL File: 'cap.blend'
+# Material Count: 1
+
+newmtl lambert3
+Ns 94.117647
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump F:\\WebGL\\Outsourcing\\huayihat\\Assets\\model\\cap_01\\a01_normal.tiff
+map_Kd F:\\WebGL\\Outsourcing\\huayihat\\Assets\\model\\cap_01\\a.psd
