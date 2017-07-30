@@ -15,7 +15,11 @@ var mat;
 var controls;
 
 var helper;
+var _head;
 
+var is_tryon = false;
+
+/*
 function create_ui(){
     controls = new function () {
         mat = new THREE.MeshPhongMaterial();
@@ -39,20 +43,7 @@ function create_ui(){
             load_part(e);
         };
 
-        this.changeTexture = function (e) {
-            var texture = THREE.ImageUtils.loadTexture("../textures/" + e + ".jpg");
-            mat.map = texture;
-            if(mesh){
-                mesh.material.map = texture;
-            }
-        }
 
-        this.changeColor = function (e) {
-           var color = new THREE.Color(e);
-            if(mesh){
-                mesh.material.color = color;
-            }
-        }
     };
 
     var gui = new dat.GUI();
@@ -80,6 +71,23 @@ function create_ui(){
     spGui.add(controls, 'changeColor', ["#FF0000", "#00FF00", "double"]).onChange(controls.changeColor);
 
     spGui.add(controls, 'changeTexture', ["cap", "daocao", "double"]).onChange(controls.changeTexture);
+}*/
+
+function changeTexture(e) {
+    var _texture = THREE.ImageUtils.loadTexture("../textures/" + e + ".jpg");
+    if(mesh){
+        //console.log(JSON.stringify(mesh.material.toJSON()));
+        for(var i in mesh.material.attributes){
+            alert(i);
+        }
+    }
+}
+
+function changeColor(e) {
+    var color = new THREE.Color(e);
+    if(mesh){
+        mat.color = color;
+    }
 }
 
 function create_scene(){
@@ -87,20 +95,17 @@ function create_scene(){
     camera = new THREE.PerspectiveCamera(45, $("#WebGL-Output").width() /  $("#WebGL-Output").height(), 0.1, 1000);
     //orbit = new THREE.OrbitControls(camera);
 
-    helper = new THREE.AxisHelper(20);
-    scene.add(helper);
-    helper.rotation.y = 10;
-
     webGLRenderer = new THREE.WebGLRenderer({
-        antialias: true
+        antialias: true,
+        preserveDrawingBuffer: true
     });
-    webGLRenderer.setClearColor(new THREE.Color(0xffffff, 1.0));
+    webGLRenderer.setClearColor(new THREE.Color(0xE3E3E3, 1.0));
     webGLRenderer.setSize($("#WebGL-Output").width(), $("#WebGL-Output").height());
     webGLRenderer.shadowMapEnabled = true;
 
-    camera.position.x = -30;
-    camera.position.y = 40;
-    camera.position.z = 50;
+    camera.position.x = 0;
+    camera.position.y = 0;
+    camera.position.z = 100;
     camera.lookAt(scene.position);
     scene.add(camera);
 
@@ -123,36 +128,42 @@ function create_scene(){
 
     render();
 
-    load_content("sphere");
-
     Listener();
 }
 
 function load_content(name){
-    /*var loader = new THREE.JSONLoader();
+    var loader = new THREE.JSONLoader();
     loader.load('../content/'+name+'.js', function (geometry,material) {
         if(mesh){
-            scene.remove(mesh);
+            parent.remove(mesh);
         }
         mat = material[0];
         mesh = new THREE.Mesh(geometry, mat);
-        mesh.scale.x = 15;
-        mesh.scale.y = 15;
-        mesh.scale.z = 15;
+        parent.add(mesh);
+        mesh.scale.x = 160;
+        mesh.scale.y = 160;
+        mesh.scale.z = 160;
+        if(is_tryon){
+            mesh.position.set(0,20,0);
+            mesh.rotation.set(0.2,0,0);
+        }else{
+            mesh.position.set(0,0,0);
+            mesh.rotation.set(0,0,0);
+        }
         //container.position.set(0,0,0);
         //mesh.scale.set(500, 500, 500);
-        parent.add(mesh);
-    },"../textures/");*/
+
+    },"../textures/");
 
     //controls.changeTexture(name);
-
+    /*
     var loader = new THREE.OBJMTLLoader();
     loader.load('../content/buffterfly.obj','../content/buffterfly.mtl',function(loadedMesh){
         mesh = loadedMesh;
         loadedMesh.scale.set(100, 100, 100);
         loadedMesh.position.set(0,0,0);
         scene.add(loadedMesh);
-    });
+    });*/
 }
 
 function load_part(name){
@@ -180,7 +191,6 @@ function render() {
     //orbit.update();
     if (mesh) {
         //mesh.rotation.y += 0.02;
-
     }
     requestAnimationFrame(render);
     webGLRenderer.render(scene, camera);
@@ -189,24 +199,34 @@ function render() {
 function Listener(){
     var startX,endX,startY,endY;
     var _down = false;
-    $("#WebGL-Output").on('mousemove mousedown mouseup',function(event){
-        /*
+    $("#WebGL-Output").on('touchstart touchmove touchend',function(event){
+        if(is_tryon){
+            return;
+        }
         var touch_first = event.originalEvent.targetTouches[0],
-            touch_second = event.originalEvent.targetTouches[1],
-            fingers = event.originalEvent.touches.length;
+        touch_second = event.originalEvent.targetTouches[1],
+        fingers = event.originalEvent.touches.length;
         if (event.type == 'touchstart') {
             startX = touch_first.pageX;
             startY = touch_first.pageY;
-
+            helper.rotation.set(0,0,0);
         } else if (event.type == 'touchmove') {
-            endX = Math.abs(touch_first.pageX - startX);
-            endY = Math.abs(touch_first.pageY - startY);
-            mesh.rota
-            mesh.rotation.x += endY * 0.01;
+
+            endX =  touch_first.pageX - startX;
+            endY = touch_first.pageY - startY;
+
+            startX = touch_first.pageX;
+            startY = touch_first.pageY;
+            //var vec = new THREE.Vector3(0,0,0);
+            //vec.crossVectors(camera.up,camera.getWorldDirection())
+            rotateAroundWorldAxis(mesh,new THREE.Vector3(1,0,0),endY * 0.005);
+            parent.rotateY(endX * 0.005);
+            //parent.rotateY(endX * 0.002);
         } else if (event.type == 'touchend') {
 
-        }*/
+        }
 
+        /*
         if (event.type == 'mousedown') {
             startX = event.clientX;
             startY = event.clientY;
@@ -229,7 +249,7 @@ function Listener(){
             //mesh.rotateY(endX*0.01);
         }else if(event.type == 'mouseup'){
             _down = false;
-        }
+        }*/
     });
 }
 
@@ -261,6 +281,66 @@ function rotateAroundWorldAxis(object, axis, radians) {
     object.matrix = rotWorldMatrix;
 
     object.rotation.setFromRotationMatrix(object.matrix);
+
+}
+
+function try_on() {
+    /*
+    var loader = new THREE.JSONLoader();
+    loader.load('../content/head.js', function (geometry,material){
+        //container.position.set(0,0,0);
+        //mesh.scale.set(500, 500, 500);
+        var _mat = new THREE.MeshBasicMaterial({color:0xFF0000});
+        _mat.side = "double";
+        if(!head) {
+            //var head_geometry = new THREE.PlaneGeometry(10,10,10,10);
+            head = new THREE.Mesh(geometry,_mat);
+            head.scale.x = 1;
+            head.scale.y = 1;
+            head.scale.z = 1;
+            head.position.set(0,0,0);
+            alert("Hello");
+        }else{
+            //head.visible = true;
+        }
+        //scene.add(mesh);
+    },"../textures/");*/
+    is_tryon = true;
+    parent.rotation.set(0,0,0);
+    if(!_head){
+        var texture = THREE.ImageUtils.loadTexture("../textures/head.png");
+        var _mat = new THREE.MeshLambertMaterial({map:texture,transparent:true});
+        var head_geometry = new THREE.PlaneGeometry(10,10,10,10);
+        _head = new THREE.Mesh(head_geometry,_mat);
+        scene.add(_head);
+        _head.scale.x = 7;
+        _head.scale.y = 7;
+        _head.scale.z = 7;
+        _head.position.set(0,-6,0);
+    }else{
+        _head.visible = true;
+    }
+}
+
+function custom_made(){
+    is_tryon = false;
+    if(_head){
+        _head.visible = false;
+    }
+}
+
+function save_info(){
+    if(is_tryon){
+        var dataUrl = webGLRenderer.domElement.toDataURL("image/png");
+        if(mesh){
+            parent.remove(mesh);
+        }
+        return dataUrl;
+    }else{
+        if(mesh){
+            parent.remove(mesh);
+        }
+    }
 
 }
 

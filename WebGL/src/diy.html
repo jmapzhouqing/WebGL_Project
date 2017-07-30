@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="../js/WebGL.js"></script>
+    <script type="text/javascript" src="../libs/three.js"></script>
+    <script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
+    <script type="text/javascript" src="../libs/OrbitControls.js"></script>
+    <script type="text/javascript" src="../libs/stats.js"></script>
+    <script type="text/javascript" src="../libs/dat.gui.js"></script>
+    <script type="text/javascript" src="../libs/Projector.js"></script>
+    <script type="text/javascript" src="../libs/OBJLoader.js"></script>
+    <script type="text/javascript" src="../libs/MTLLoader.js"></script>
+    <script type="text/javascript" src="../libs/OBJMTLLoader.js"></script>
+    <title>华艺帽业-DIY定制</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <style>
+        #WebGL-Output{
+            position: absolute;
+            top: 75px;
+            margin-top: 30px;
+            margin-left: calc(50% - 140px);
+            width: 280px;
+            height: 280px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+  <div id="app">
+    <div class="header">
+      <div class="contact">
+        <img src="./img/service@3x.png" height="22" width="22">
+      </div>
+      <div class="title">DIY定制</div>
+      <div class="msg">
+        <img src="./img/msg@3x.png" height="26" width="24">
+      </div>
+    </div>
+    <div class="main-wrapper">
+      <div class="top-operate">
+        <div class="operate-box" v-if="editflag === false">
+          <div class="service">
+            <img src="./img/service2@3x.png" width="15" height="15"><span>客服</span>
+          </div>
+          <div class="tab-btn">
+            <img class="line" src="./img/line.png" width="113" height="38">
+            <img @touchstart="showDiy" v-if="diyflag" class="diy-img" src="./img/diy1@3x.png" width="20" height="36">
+            <img @touchstart="showDiy" v-else class="diy-img diy-img1" src="./img/DIY2@3x.png" width="20" height="9">
+            <img @touchstart="showTest" v-if="diyflag" class="test test1" src="./img/test2@3x.png" width="25" height="11">
+            <img @touchstart="showTest" v-else class="test" src="./img/test@3x.png" width="25" height="36">
+          </div>
+          <div class="collect-and-share">
+            <img src="./img/collect@3x.png" width="20" height="20">
+            <img src="./img/share@3x.png" width="20" height="20">
+          </div>
+        </div>
+        <div v-else>
+          <div class="save">
+            <img @touchstart="toDiy" src="./img/back@3x.png" width="90" height="28">
+          </div>
+        </div>
+      </div>
+
+
+      <div v-if="editflag === false">
+        <div class="edit">
+          <img @touchstart="toEdit" src="./img/edit@3x.png" width="90" height="90">
+        </div>
+        <div class="bottom-operate">
+          <img class="add" src="./img/add.png" width="128" height="33">
+          <img class="buy" src="./img/buy@3x.png" width="128" height="33">
+        </div>
+      </div>
+      <div v-else>
+        <div class="title-wrapper">
+          <span @touchstart="showdiy1" :class="{'active': diyType === 1}">帽型</span>
+          <span @touchstart="showdiy2" :class="{'active': diyType === 2}">材质</span>
+          <span @touchstart="showdiy3" :class="{'active': diyType === 3}">颜色</span>
+          <span @touchstart="showdiy4" :class="{'active': diyType === 4}">尺寸</span>
+          <span @touchstart="showdiy5" :class="{'active': diyType === 5}">部件</span>
+        </div>
+        <div class="hatType-wrapper" v-if="diyType === 1">
+          <img @touchstart="exhibtion_content(index)" class="hatType" v-for="(item,index) in 8" src="./img/hat@3x.png">
+        </div>
+        <div class="material-wrapper" v-if="diyType === 2">
+          <div @touchstart="change_texture(index)" class="material" :class="{'active-item': now1 === index}" v-for="(item,index) in 8">羊毛</div>
+        </div>
+        <div class="color-wrapper" v-if="diyType === 3">
+          <div @touchstart="change_color(index)" class="color" :class="{'active-item': now2 === index}" v-for="(item,index) in 8">黑色</div>
+        </div>
+        <div class="size-wrapper" v-if="diyType === 4">
+          <div @touchstart="changeNow3(index)" class="size" :class="{'active-item': now3 === index}" v-for="(item,index) in 8">56cm</div>
+        </div>
+        <div class="part-wrapper" v-if="diyType === 5">
+          <div class="part-type">
+            <span @touchstart="nowPart1" class="part-item" :class="{'active-part': nowPart === 1}">类别一</span>
+            <span @touchstart="nowPart2" class="part-item" :class="{'active-part': nowPart === 2}">类别二</span>
+            <span @touchstart="nowPart3" class="part-item" :class="{'active-part': nowPart === 3}">其他</span>
+          </div>
+          <div class="img-part">
+            <img @touchstart="exbition_part(index)" class="part" v-for="(item,index) in 8" src="./img/part@3x.png">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="index">
+        <img src="./img/index@3x.png" height="37" width="40">
+      </div>
+      <div class="diy">
+        <img src="./img/diy@3x.png" height="33" width="36">
+      </div>
+      <div class="center">
+        <img src="./img/center@3x.png" height="36" width="40">
+      </div>
+    </div>
+  </div>
+  
+  <div id="WebGL-Output"></div>
+
+  <script>
+      $(create_scene());
+  </script>
+  <script>
+      new Vue({
+        el: '#app',
+        data: {
+          editflag: false,
+          diyflag: true,
+          diyType: 1,
+          now1: 0,
+          now2: 0,
+          now3: 0,
+          nowPart: 1
+        },
+        methods: {
+          showDiy() {
+            if (this.diyflag !== true) {
+              this.diyflag = true
+            }
+            custom_made();
+          },
+          showTest() {
+            if (this.diyflag !== false) {
+              this.diyflag = false
+            }
+            try_on();
+          },
+          toDiy() {
+            this.editflag = false;
+            save_info();
+          },
+          toEdit() {
+            this.editflag = true
+          },
+          showdiy1() {
+            if (this.diyType !== 1) {
+              this.diyType = 1
+            }
+          },
+          showdiy2() {
+            if (this.diyType !== 2) {
+              this.diyType = 2
+            }
+          },
+          showdiy3() {
+            if (this.diyType !== 3) {
+              this.diyType = 3
+            }
+          },
+          showdiy4() {
+            if (this.diyType !== 4) {
+              this.diyType = 4
+            }
+          },
+          showdiy5() {
+            if (this.diyType !== 5) {
+              this.diyType = 5
+            }
+          },
+          changeNow1(index) {
+            this.now1 = index
+          },
+          changeNow2(index) {
+            this.now2 = index
+          },
+          changeNow3(index) {
+            this.now3 = index
+          },
+          nowPart1() {
+            if (this.nowPart !== 1) {
+              this.nowPart = 1
+            }
+          },
+          nowPart2() {
+            if (this.nowPart !== 2) {
+              this.nowPart = 2
+            }
+          },
+          nowPart3() {
+            if (this.nowPart !== 3) {
+              this.nowPart = 3
+            }
+          },
+          exhibtion_content(index){
+              load_content("cap");
+          },
+          change_texture(index){
+              changeTexture("daocao");
+          },
+          change_color(index){
+              changeColor("#FF0000");
+          },
+          exbition_part(index){
+              load_part("part");
+          }
+        }
+      })
+  </script>
+
+  <style>
+    .header {
+      display: flex;
+      height: 40px;
+      padding-top: 4px;
+      background-color: #fff;
+    }
+    .contact, .title, .msg {
+      flex: 1;
+    }
+    .contact {
+      padding-top: 9px;
+      padding-left: 8px;
+    }
+    .contact img {
+      padding-right: 30px;
+    }
+    .title {
+      padding-top: 12px;
+      text-align: center;
+      font-size: 16px;
+      color: rgb(120,99,89);
+    }
+    .msg {
+      padding-top: 7px;
+      padding-right: 8px;
+      text-align: right;
+    }
+    .main-wrapper {
+      margin-bottom: 49px;
+      height: 574px;
+      overflow: auto;
+      background-color: rgb(227,227,227);
+    }
+    .top-operate {
+      padding: 0 10px;
+    }
+    .operate-box {
+      display: flex;
+    }
+    .service, .tab-btn, .collect-and-share {
+      flex: 1;
+    }
+    .service {
+      margin-top: 10px;
+      padding-top: 13px;
+      font-size: 12px;
+      color: rgb(102,102,102);
+    }
+    .service span, .service img {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .service span {
+      margin-left: 4px;
+    }
+    .tab-btn {
+      margin-top: 10px;
+      position: relative;
+    }
+    .tab-btn img {
+      position: absolute;
+      text-align: center;
+    }
+    .diy-img, .test {
+      top: 0;
+    }
+    .diy-img {
+      left: 28px
+    }
+    .diy-img1 {
+      padding: 13px 0;
+    }
+    .test {
+      left: 70px;
+    }
+    .test1 {
+      padding: 12px 0;
+    }
+    .collect-and-share {
+      margin-top: 10px;
+      padding-top: 10px;
+      text-align: right;
+    }
+    .collect-and-share img {
+      margin-left: 10px;
+    }
+    .save {
+      margin-top: 25px;
+    }
+    .edit {
+      margin-top: 315px;
+      text-align: center;
+    }
+    .bottom-operate {
+      margin-top: 25px;
+      text-align: center;
+    }
+    .add {
+      margin-right: 30px;
+    }
+    .title-wrapper {
+      margin-top: 315px;
+      display: flex;
+      font-size: 12px;
+      color: rgb(102,102,102)
+    }
+    .title-wrapper span {
+      flex: 1;
+      padding: 10px 0;
+      text-align: center;
+    }
+    .active {
+      color: #fff;
+      background-color: rgb(120,99,89);
+    }
+    .hatType-wrapper {
+      padding: 0 10px 20px;
+      width: calc(100% - 20px);
+      background-color: #fff;
+    }
+    .hatType {
+      width: calc(1 / 4 * (100% - 40px));
+      margin: 10px 10px 10px 0;
+    }
+    .material-wrapper, .color-wrapper, .size-wrapper {
+      padding: 0 10px 36px;
+      width: calc(100% - 20px);
+      text-align: center;
+      background-color: #fff;
+    } 
+    .material, .color, .size {
+      display: inline-block;
+      width: calc(1 / 4 * (100% - 50px));
+      border: 1px solid rgb(102,102,102);
+      height: calc(1 / 5 * (100% - 70px));
+      padding: 10px 0;
+      font-size: 12px;
+      margin: 10px 5px;
+      color: rgb(102,102,102);
+      text-align: center;
+    }
+    .active-item {
+      color: #fff;
+      background-color: rgb(120,99,89);
+    }
+    .part-wrapper {
+      font-size: 0;
+      background-color: #fff;
+    }
+    .part-type {
+      font-size: 12px;
+      padding: 15px 10px;
+      border-top: 1px solid rgb(102,102,102);
+      border-bottom: 1px solid rgb(102,102,102);
+    }
+    .part-item {
+      padding: 10px;
+      border-top: 4px solid #fff;
+      border-bottom: 4px solid #fff;
+      color: rgb(102,102,102);
+    }
+    .active-part {
+      padding: 10px;
+      border-top: 4px solid rgb(120,99,89);
+      border-bottom: 4px solid rgb(120,99,89);
+      color: rgb(120,99,89);
+    }
+    .img-part {
+      padding: 0 10px 20px;
+      width: calc(100% - 20px);
+    }
+    .part {
+      width: calc(1 / 4 * (100% - 40px));
+      margin: 10px 10px 10px 0;
+    }
+    .footer {
+      position: fixed;
+      display: flex;
+      bottom: 0;
+      width: 100%;
+      height: 49px;
+      background-color: #fff;
+    }
+    .index, .diy, .center {
+      flex: 1;
+      text-align: center;
+    }
+    .index {
+      padding-top: 6px;
+    }
+    .diy {
+      padding-top: 10px;
+      background-color: rgb(163,163,163);
+    }
+    .center {
+      padding-top: 7px;
+    }
+    html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, a, img, i, ol, ul, li, form, label, table, tr, th, td, audio, video, input, textarea {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font-weight: normal;
+      vertical-align: baseline;
+      outline: none;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    li{
+      list-style: none;
+    }
+
+    body, html {
+      line-height: 1;
+      font-weight: 200;
+      font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    }
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    ::-webkit-scrollbar-track-piece {
+        background-color: rgba(0, 0, 0, 0.2);
+        -webkit-border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:vertical {
+        height: 5px;
+        background-color: rgba(125, 125, 125, 0.7);
+        -webkit-border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:horizontal {
+        width: 5px;
+        background-color: rgba(125, 125, 125, 0.7);
+        -webkit-border-radius: 6px;
+    }
+  </style>
+
+</body>
+</html>
