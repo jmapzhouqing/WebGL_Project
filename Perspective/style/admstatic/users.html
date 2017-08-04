@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户管理</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 用户管理
+    </div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label class="sr-only"></label>
+                            <input type="text" class="form-control" placeholder="用户名">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only">手机号</label>
+                            <input type="tel" class="form-control" placeholder="手机号">
+                        </div>
+                        <button type="submit" class="btn btn-primary">搜索</button>
+                    </form>
+                </div>
+                <div class="col-xs-2">
+                    <a href="html/users-add.html" class="btn btn-info">增加</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>昵称</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>手机号</th>
+                    <th>状态</th>
+                    <th width="20%">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>花小安</td>
+                    <td>华安</td>
+                    <td>男</td>
+                    <td>1345678901</td>
+                    <td>正常</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                            <a href="html/users-details.html" class="btn btn-success">查看</a>
+                            <a href="html/users-add.html" class="btn btn-info">修改</a>
+                            <button class="btn btn-danger">锁定</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>花小安</td>
+                    <td>华安</td>
+                    <td>男</td>
+                    <td>1345678901</td>
+                    <td>正常</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="#" class="btn btn-success">查看</a>
+                            <a href="#" class="btn btn-info">修改</a>
+                            <button class="btn btn-danger">锁定</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>花小安</td>
+                    <td>华安</td>
+                    <td>男</td>
+                    <td>1345678901</td>
+                    <td>正常</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="#" class="btn btn-success">查看</a>
+                            <a href="#" class="btn btn-info">修改</a>
+                            <button class="btn btn-warning">解锁</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>花小安</td>
+                    <td>华安</td>
+                    <td>男</td>
+                    <td>1345678901</td>
+                    <td>正常</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="#" class="btn btn-success">查看</a>
+                            <a href="#" class="btn btn-info">修改</a>
+                            <button class="btn btn-danger">锁定</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>花小安</td>
+                    <td>华安</td>
+                    <td>男</td>
+                    <td>1345678901</td>
+                    <td>正常</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="#" class="btn btn-success">查看</a>
+                            <a href="#" class="btn btn-info">修改</a>
+                            <button class="btn btn-warning">解锁</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>花小安</td>
+                    <td>华安</td>
+                    <td>男</td>
+                    <td>1345678901</td>
+                    <td>正常</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="#" class="btn btn-success">查看</a>
+                            <a href="#" class="btn btn-info">修改</a>
+                            <button class="btn btn-danger">锁定</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    <nav aria-label="Page navigation" class="nav-divider">
+        <ul class="pagination pull-right">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+</body>
+</html>

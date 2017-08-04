@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>角色管理</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 角色
+    </div>
+    <div class="panel-body">
+        <button class="btn btn-info" data-toggle="modal" data-target="#add" style="margin-left: 60px">增加</button>
+    </div>
+    <table class="table table-hover noMarB">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>名称</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>管理员</td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                    <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>运营</td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                    <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>行政</td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                    <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>策划</td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                    <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>XX</td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                    <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>其他</td>
+            <td>
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                    <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--增加修改弹窗-->
+<div class="modal fade " id="add" tabindex="-1" role="dialog" aria-labelledby="添加/修改">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-width">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">添加/修改</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <form class="form-horizontal" id="formadd">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">新增/修改</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">新增/修改</label>
+                        <div class="col-sm-9">
+                            <label class="checkbox-inline" style="margin-left: 10px;">
+                                <input type="checkbox" value="option1">用户管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="option3">透视图管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="option2">产品管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="option3">数据分析
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="option3">基础信息管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="option3">订单管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="option3">热点管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="option3">楼盘管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="option3">优惠码管理
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="option3">模板管理
+                            </label>
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary" form="formadd">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script>
+        /*
+        $(function(){
+            var space = $.parseJSON('$!space');
+            for(var i=0;i<space.length;i++){
+                var li = $("<li><li>");
+                li.text(space[i]);
+                $("#tab").append(li);
+            }
+        })*/
+    </script>
+
+    <style>
+        #left-top{width:600px;margin:10px auto;position:absolute;left:0px;top:0px;height:30px}
+        #tab,#view_container{overflow:hidden;zoom:1;background:#000;border:1px solid #000;height:30px;position:absolute;left:0px}
+        #tab li,#view_container li{float:left;color:#fff;height:30px;cursor:pointer;line-height:30px;list-style-type:none;padding:0 20px;}
+
+        #WebGl-Output{
+            position:absolute;
+            left:0px;
+            top:60px;
+            width:800px;
+            height:580px;
+            border:1px #ff0000 solid;
+        }
+
+        #view{
+            position:absolute;
+            left:0px;
+            top:460px;
+            width:600px;
+            height:30px;
+            border:1px #ff0000 solid;
+        }
+
+        #left-top #bottom #view{
+
+        }
+
+        #layer{
+            width:40%;
+            height:400px;
+            position:absolute;;
+            left:700px;
+            top:30px;
+            border:1px #00ff00 solid;
+        }
+
+        #layer_control{
+            border:1px #0000ff solid;
+            width:30%;
+            height:100%;
+        }
+
+        #element_control{
+            border:1px #000000 solid;
+            position:absolute;
+            left:30%;
+            top:0px;
+            width:70%;
+            height:100%;
+        }
+
+        #view_entering{
+            background-color: #000000;
+            position:absolute;
+            left:30%;
+            top:30%;
+            width:400px;
+            height:400px;
+        }
+
+        .view_div{
+            width: 100px;
+            height: 30px;
+        }
+
+        .view_edit_img{
+            width: 10px;
+            height: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="left-top">
+    <ul id="space_container">
+
+    </ul>
+
+    <div id="WebGl-Output">
+
+    </div>
+
+    <div id="view">
+        <ul id="view_container">
+
+        </ul>
+
+        <img id="view_add_control" src="style/admstatic/image/image/1.jpg" width="30px" height="30px" style="float:right"/>
+    </div>
+
+</div>
+
+<div id="layer">
+   <div id="layer_control">
+
+   </div>
+
+    <div id="element_control">
+
+    </div>
+</div>
+
+<div id="view_entering">
+    <form>
+        <span>
+            <label>Name:</label>
+            <input type="text" value="Hello"/>
+        </span>
+
+        <span>
+            <label>Name:</label>
+            <input type="text" value="Hello"/>
+        </span>
+
+        <input type="button" id="view_confirm" value="确定"/>
+    </form>
+</div>
+
+<script type="text/javascript" src="script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="script/perspective/perspective.js"></script>
+<script type="text/javascript" src="libs/three.js"></script>
+</body>
+</html>

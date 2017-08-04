@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>楼盘管理</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 楼盘管理
+    </div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <form class="form-inline">
+                        <select class="form-control">
+                            <option>省</option>
+                            <option>江苏</option>
+                        </select>
+                        <select class="form-control">
+                            <option>市</option>
+                            <option>南京</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder="楼盘名称">
+                        <button type="submit" class="btn btn-primary">搜索</button>
+                    </form>
+                </div>
+                <div class="col-xs-2">
+                    <button class="btn btn-info" data-toggle="modal" data-target="#add" style="margin-left: 60px">增加</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>省份</th>
+                    <th>城市</th>
+                    <th>楼盘名称</th>
+                    <th width="20%">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>北京市</td>
+                    <td>北京市</td>
+                    <td>保利</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="html/houseSet.html" class="btn btn-success">设置</a>
+                            <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                            <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>北京市</td>
+                    <td>北京市</td>
+                    <td>保利</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="html/houseSet.html" class="btn btn-success">设置</a>
+                            <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                            <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>北京市</td>
+                    <td>北京市</td>
+                    <td>保利</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="html/houseSet.html" class="btn btn-success">设置</a>
+                            <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                            <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>北京市</td>
+                    <td>北京市</td>
+                    <td>保利</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="html/houseSet.html" class="btn btn-success">设置</a>
+                            <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                            <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>北京市</td>
+                    <td>北京市</td>
+                    <td>保利</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="html/houseSet.html" class="btn btn-success">设置</a>
+                            <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                            <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    <nav aria-label="Page navigation" class="nav-divider">
+        <ul class="pagination pull-right">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!--添加楼盘弹窗-->
+<div class="modal fade " id="add" tabindex="-1" role="dialog" aria-labelledby="添加/修改">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-width">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">添加/修改</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <form class="form-horizontal" id="formadd">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">省份</label>
+                        <div class="col-sm-9">
+                            <select class="form-control">
+                                <option>省</option>
+                                <option>江苏</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">城市</label>
+                        <div class="col-sm-9">
+                            <select class="form-control">
+                                <option>市</option>
+                                <option>南京</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">楼盘名称</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="楼盘名称">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary" form="formadd">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

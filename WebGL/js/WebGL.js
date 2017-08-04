@@ -75,11 +75,9 @@ function create_ui(){
 
 function changeTexture(e) {
     var _texture = THREE.ImageUtils.loadTexture("../textures/" + e + ".jpg");
+   
     if(mesh){
-        //console.log(JSON.stringify(mesh.material.toJSON()));
-        for(var i in mesh.material.attributes){
-            alert(i);
-        }
+        mat.map = _texture;
     }
 }
 

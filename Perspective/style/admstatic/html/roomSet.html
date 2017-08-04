@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>楼盘设置-空间设置</title>
+    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 楼盘管理
+    </div>
+    <div class="panel-body">
+        <div class="form-horizontal">
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">楼盘名称</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">保利项目</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">地址</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">北京市。。。。。</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4 control-label">户型</label>
+                <div class="col-sm-8">
+                    <p class="form-control-static">A0002104</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <button class="btn btn-info" data-toggle="modal" data-target="#add" style="margin-left: 130px">增加</button>
+            </div>
+        </div>
+        <table class="table table-hover noMarB">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>厨房</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>卫生间</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>主卧</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>阳台</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>次卧</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>书房</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#add">修改</button>
+                        <a href="#" class="btn btn-danger" onClick="del()">删除</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--增加修改弹窗-->
+<div class="modal fade " id="add" tabindex="-1" role="dialog" aria-labelledby="添加/修改">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-width">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">添加/修改</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <form class="form-horizontal" id="formadd">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">新增/修改</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary" form="formadd">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="../lib/bootstrap/js/bootstrap.js"></script>
+<script src="../js/main.js"></script>
+
+</body>
+</html>

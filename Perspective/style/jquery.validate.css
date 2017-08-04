@@ -1,0 +1,14 @@
+
+/*jquery validate*/
+input.error { border: 0px solid black; }
+label.error {
+ width:200px;display:block;text-align:left !important;line-height:20px;color:#dd3e3e !important;
+}
+label.checked {
+  background:url("./demo/images/checked.gif") no-repeat 0px 0px;
+}
+
+.error_loc{width:80%; height:70px; margin:0 auto; margin-top:20px;text-align: left;}
+
+/*20170223*/
+.jg{}

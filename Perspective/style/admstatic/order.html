@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>订单管理</title>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/datetimepicker/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 订单管理
+    </div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="form-inline">
+                        <input type="text" class="form-control" value="日期" id="datetimepicker">
+                        <select class="form-control">
+                            <option>楼盘名称</option>
+                            <option>金地</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder="楼盘名称">
+                        <input type="text" class="form-control" placeholder="用户ID">
+                        <button type="submit" class="btn btn-primary">搜索</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>用户ID</th>
+                    <th>订单状态</th>
+                    <th>物流状态</th>
+                    <th>订单金额</th>
+                    <th width="20%">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>孙大圣</td>
+                    <td>8897</td>
+                    <td>未付款</td>
+                    <td>未发货</td>
+                    <td>18000</td>
+                    <td>
+                        <a href="html/order-details.html" class="btn btn-success">查看</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>孙大圣</td>
+                    <td>8897</td>
+                    <td>未付款</td>
+                    <td>未发货</td>
+                    <td>18000</td>
+                    <td>
+                        <a href="html/order-details.html" class="btn btn-success">查看</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>孙大圣</td>
+                    <td>8897</td>
+                    <td>未付款</td>
+                    <td>未发货</td>
+                    <td>18000</td>
+                    <td>
+                        <a href="html/order-details.html" class="btn btn-success">查看</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>孙大圣</td>
+                    <td>8897</td>
+                    <td>未付款</td>
+                    <td>未发货</td>
+                    <td>18000</td>
+                    <td>
+                        <a href="html/order-details.html" class="btn btn-success">查看</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>孙大圣</td>
+                    <td>8897</td>
+                    <td>未付款</td>
+                    <td>未发货</td>
+                    <td>18000</td>
+                    <td>
+                        <a href="html/order-details.html" class="btn btn-success">查看</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>孙大圣</td>
+                    <td>8897</td>
+                    <td>未付款</td>
+                    <td>未发货</td>
+                    <td>18000</td>
+                    <td>
+                        <a href="html/order-details.html" class="btn btn-success">查看</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>孙大圣</td>
+                    <td>8897</td>
+                    <td>未付款</td>
+                    <td>未发货</td>
+                    <td>18000</td>
+                    <td>
+                        <a href="html/order-details.html" class="btn btn-success">查看</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    <nav aria-label="Page navigation" class="nav-divider">
+        <ul class="pagination pull-right">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<script src="lib/jQuery/jquery-3.2.1.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.js"></script>
+<script src="lib/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="lib/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+<script>
+    $('#datetimepicker').datetimepicker({
+            format: "yyyy-mm-dd",
+            autoclose: true,
+            todayBtn: true,
+            todayHighlight: true,
+            showMeridian: true,
+            minView:2,
+            startDate: "2017.1.1",
+            language:'zh-CN',
+            initialDate:new Date()
+        }
+    );
+</script>
+
+
+</body>
+</html>
